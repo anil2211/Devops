@@ -11,7 +11,7 @@ const AddTodo = ({onAdd})=>{
         
         if(!todo) return;
         onAdd(todo);
-        // setTodo("");
+        setTodo("");
     }
 
     return(
