@@ -15,19 +15,15 @@ app.use(express.json())
 
 app.use('/api', todoRoutes)
 
-// connectDB()
 
 // app.use(express.static(path.join(__dirname, "../todo-frontend/build")))
 
 // app.get("*", (req, res) =>{
 //     res.sendFile(path.join(__dirname, "../todo-frontend/build", "index.html"))
 // })
-// module.exports = app;
+
 // app.use()
 
 
 connectDB()
-const PORT = process.env.PORT || 3001;
-app.listen(PORT,()=>{
-    console.log(`server is running on the port ${PORT}`)
-})
+module.exports = app;

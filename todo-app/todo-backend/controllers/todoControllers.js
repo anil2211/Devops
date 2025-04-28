@@ -17,14 +17,15 @@ exports.getTodos= async (req,res)=>{
 
 exports.addTodo = async(req,res)=>{
     try {
-        
-    const title=req.body;
+    // logger.info(`Request body is ${JSON.stringify(req.body)}`)
+    const title=req.body.title;
     // console.log("Adding a new todo",req.body)
-    logger.info("adding a new todo",title.todo)
+    logger.info(`adding a new todo ${title}`)
     const newTodo = new Todo({
-        title:title.todo
+        title:title
     })
     logger.info("Adding the todo to DB",newTodo)
+    // console.log("Adding the todo to DB",newTodo)
     const savedTodo = await newTodo.save()
     logger.info("Added the todo to Db",savedTodo)
 
