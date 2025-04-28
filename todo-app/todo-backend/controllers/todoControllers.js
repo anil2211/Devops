@@ -19,13 +19,16 @@ exports.addTodo = async(req,res)=>{
     try {
     // logger.info(`Request body is ${JSON.stringify(req.body)}`)
     const title=req.body.title;
-    // console.log("Adding a new todo",req.body)
+    if (!title || title.trim() === "") {
+        return res.status(400).json({ message: "Title is required and cannot be empty" });
+    }
+    console.log("Adding a new todo",req.body)
     logger.info(`adding a new todo ${title}`)
     const newTodo = new Todo({
         title:title
     })
     logger.info("Adding the todo to DB",newTodo)
-    // console.log("Adding the todo to DB",newTodo)
+    console.log("Adding the todo to DB",newTodo)
     const savedTodo = await newTodo.save()
     logger.info("Added the todo to Db",savedTodo)
 
