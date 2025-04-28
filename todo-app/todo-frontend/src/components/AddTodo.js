@@ -1,28 +1,27 @@
 import React, { useState } from "react";
 
-const AddTodo = ()=>{
-    const [todo,setTodo]=useState('this is new state')
+const AddTodo = ({onAdd})=>{
+    const [todo,setTodo]=useState('')
     const handleSubmit = async (e)=>{
         e.preventDefault();
-        console.log(e)
-        console.log(todo)
-        try{
-            const response = await fetch(`http://localhost:3001/add-todo`,{
-                method: "POST",
-                headers:{'Content-Type':'application/json'},
-                body: JSON.stringify({todo})    
-            })
-
-            console.log("Response received",response)
-            
-        }catch(err){
-            console.log("Error occured while adding todo",err)
-        }
+        // if (!todo.trim()) {  // Prevent sending empty todos
+        //     alert("Title cannot be empty!");
+        //     return;  // Stop the form from submitting
+        // }
+        
+        if(!todo) return;
+        onAdd(todo);
+        // setTodo("");
     }
 
     return(
         <form onSubmit={handleSubmit}>
-            <input type="text" value={todo} onChange={(e)=>setTodo(e.target.value)}/>
+            <input type="text"
+            value={todo} 
+            onChange={(e)=>setTodo(e.target.value)}
+            placeholder="Add a new todo"
+            required
+            />
             <button type="submit">Add Todo</button>
         </form>
     )
