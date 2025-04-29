@@ -10,8 +10,6 @@ afterEach(()=>{
 
 describe("Testing the Todo Item component", ()=>{
 
-
-
     const mockTodo = {_id:"1", title: "New Todo", completed: false}
 
     test("check if the todo title gets rendered", ()=>{
