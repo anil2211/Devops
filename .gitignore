@@ -7,6 +7,13 @@ todo-app/todo-backend/node_modules/
 /.pnp
 .pnp.js
 
+guided project/pythonProject/venv
+Testing-todo-app-practice/backend/node_modules
+Testing-todo-app-practice/frontend/node_modules
+
+todo-app-revise-15dec/backend/node_modules
+todo-app-revise-15dec/frontend/node_modules
+
 # testing
 /coverage
 

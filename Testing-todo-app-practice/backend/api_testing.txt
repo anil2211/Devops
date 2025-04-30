@@ -1,0 +1,7 @@
+url=http://localhost:5000/api/user
+method=POST
+Json data={
+  "name":"Anil",
+  "email":"anil@gmail.com",
+  "password":"123456"
+}

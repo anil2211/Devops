@@ -1,0 +1,9 @@
+pip install requests beautifulsoup4 pandas numpy matplotlib
+
+#requests-used to fetch http data
+#beautifulsoup4-
+pandas-analyse data ,dataframe csv file excel 
+numpy-numerical or mathematical calculation
+matplotlib-to generate graph or visual representation
+
+TIMESTAMP LOG_TYPE ACTION USER
