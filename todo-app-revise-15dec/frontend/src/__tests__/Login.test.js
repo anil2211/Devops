@@ -19,14 +19,15 @@ test('renders form with labels', () => {
   });
 
   
-test('call onsubmit function ', () => {
+test('call onsubmit function should not triggers if email and password is blank ', () => {
     const mockFunction=jest.fn();
     render(<Login onSubmit={mockFunction}/>);
     
     const button=screen.getByRole('button',{name:/login/i})
     fireEvent.click(button);
 
-    expect(mockFunction).toHaveBeenCalled();
+    expect(mockFunction).not.toHaveBeenCalled();
+    // expect(screen.getByText(/All field are mandatory/i)).toBeInTheDocument();
     // expect(mockFunction).toHaveBeenCalledWith({email:"test",password:"test"});
   });
 
