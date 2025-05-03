@@ -1,0 +1,56 @@
+---
+- name: Installing Nginx and configuring it
+  hosts: all
+  become: true
+  
+  # declare variable
+  vars: 
+    package_name:
+      Ubuntu: apache2
+      Amazon: httpd
+  
+  
+  tasks:
+    
+    - name: printing os versions
+      debug:
+        msg: "This is {{ ansible_distribution }}"
+    
+    - name: Install apache server on Al2
+      yum:
+        name: "{{ package_name['Amazon']}}"
+        state: present
+      when: ansible_distribution=="Amazon"
+  
+    - name: Install apache server Ubuntu
+      apt:
+        name: "{{ package_name['Ubuntu']}}"
+        state: present
+        update_cache: yes
+      when: ansible_distribution=="Ubuntu"    
+
+    - name: install cronjob
+      yum:
+        name: cronie
+        state: present
+      when: ansible_distribution == "Amazon"
+
+    - name: Install Nginx on Al2
+      yum:
+        name: nginx
+        state: present
+      when: ansible_distribution == "Amazon"  
+
+    - name: Install Nginx on ubuntu
+      apt:
+        name: nginx
+        state: present
+      when: ansible_distribution == "Ubuntu"  
+
+
+    - name: Start and enable Nginx
+      service:
+        name: nginx
+        state: started
+        enabled: true
+      when: ansible_distribution == "Amazon"

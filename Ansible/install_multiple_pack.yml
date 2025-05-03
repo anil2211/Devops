@@ -1,0 +1,29 @@
+---
+- name: Installing multiple packages with loop
+  hosts: all
+  become: true
+  
+  tasks:
+
+    - name: Install packages on Ubuntu
+      apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      loop:
+        - nginx
+        - apache2
+        - git
+        - nodejs
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Install packages on Amazon Linux 2
+      yum:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - nginx
+        - httpd  # Apache is 'httpd' on Amazon Linux, not 'apache2'
+        - git
+        - nodejs
+      when: ansible_distribution == "Amazon"

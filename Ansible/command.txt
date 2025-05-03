@@ -1,0 +1,55 @@
+to login in aws server 
+ ssh -i ~/.ssh/ansible_demo.pem ec2-user@ec2-13-127-161-172.ap-south-1.compute.amazonaws.com
+
+//module 34 command
+check the disk space available on all hosts
+ansible all -m command -a "df -h" -i inventory.ini
+
+//to create a file
+ansible all -m shell -a "echo 'this is written from ansible adhoc command'> ansible_test.txt -i inventory.ini
+// open any instance and check weathe rthe file exist or not
+
+//uptime to all hosts
+ansible all -m shell -a "uptime" -i inventory.ini
+
+//all running process
+ansible all -m shell -a "ps aux" -i inventory.ini
+
+//install any packages
+ansible all -m package -a "name=http state=present" -i inventory.ini --become
+
+//file operations
+//COPY file
+ansible all -m file -a "src=inventory.ini dest=/tmp" -i inventory.ini
+//to verify
+ls /tmp
+cat inventory.ini
+//to change the prmission
+ls lrth /tmp
+
+//to create a new user
+ansible all -m user -a "name=anil state =present" -i inventory.ini --become
+
+//to copy a file 
+ansible all -m copy -a "src=inventory dest=/tmp owner=Anil" -i inventory.ini --become user
+
+// to delte the file
+ansible all -m file -a "path=/tmp/inventory.ini state absent" -i inventory.ini --become
+
+create a new file eeror.log//
+error fot testing
+this is new line
+check adhoc command
+
+//copy above file
+ansible all -m copy -a "src=error.log dest=/temp owner=anil" -i inventory.ini --become
+
+//open file for all user
+ansible all -m shell -a "cat /tmp/error.log" -i inventory.ini
+
+//to search something by grep command
+ansible all -m shell -a "grep adhoc /tmp/error.log" -i inventory.ini
+
+//top 5 processes
+ansible all -m shell -a "ps aux --sort =-%cpu | head -n 5" i inventory.ini
+
